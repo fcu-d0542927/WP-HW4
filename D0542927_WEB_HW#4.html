@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>   
+
+<select id="College" onchange="ChangedepartmentList()"> 
+  <option value="">-- College --</option> 
+  <option value="商">商學院</option> 
+  <option value="資電">資電學院</option> 
+  <option value="工">工學院</option> 
+</select> 
+
+<select id="collegemodel"></select> 
+
+<script>
+var CollegeAndModels = {};
+CollegeAndModels['商'] = ['會計學系', '國際經營與貿易學系', '財稅學系', '經濟學系'];
+CollegeAndModels['資電'] = ['資訊工程學系', '電機工程學系', '電子工程學系', '自動控制工程學系'];
+CollegeAndModels['工'] = ['纖維與電腦輔助工程學系', '機械與電腦輔助工程學系', '工業工程與系統管理學系', '化學工程學系'];
+
+function ChangedepartmentList() {
+    var departmentList = document.getElementById("College");
+    var modelList = document.getElementById("collegemodel");
+    var alldepartment = departmentList.options[departmentList.selectedIndex].value;
+    while (modelList.options.length) {
+        modelList.remove(0);
+    }
+    var departments = CollegeAndModels[alldepartment];
+    if (departments) {
+        var i;
+        for (i = 0; i < departments.length; i++) {
+            var College = new Option(departments[i], i);
+            modelList.options.add(College);
+        }
+    }
+} 
+</script>
+
+</body>
+</html>
